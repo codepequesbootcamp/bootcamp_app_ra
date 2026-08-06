@@ -1,1 +1,1 @@
-El nombde de mi proyecto.
+El nombre de mi proyecto.
