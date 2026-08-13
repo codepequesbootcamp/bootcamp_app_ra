@@ -7,20 +7,35 @@ const choferes = [
   { id: 4, nombre: "Ana Torres", licencia: "C-44902" },
 ];
 
+function iniciales(nombre) {
+  return nombre
+    .split(" ")
+    .map((parte) => parte[0])
+    .slice(0, 2)
+    .join("")
+    .toUpperCase();
+}
+
 export default function ListaPage() {
   return (
     <main className="page">
       <p className="back">
         <Link href="/">← Inicio</Link>
       </p>
-      <h1>Choferes</h1>
-      <p>Lista de choferes registrados</p>
+      <header className="page-header">
+        <p className="eyebrow">Directorio</p>
+        <h1>Choferes</h1>
+        <p className="lede">Lista de choferes registrados</p>
+      </header>
       <ul className="list">
         {choferes.map((chofer) => (
           <li key={chofer.id}>
-            <strong>{chofer.nombre}</strong>
-            <div style={{ color: "#555", marginTop: "0.25rem" }}>
-              Licencia: {chofer.licencia}
+            <div className="avatar" aria-hidden="true">
+              {iniciales(chofer.nombre)}
+            </div>
+            <div className="list-body">
+              <strong>{chofer.nombre}</strong>
+              <div className="meta">Licencia: {chofer.licencia}</div>
             </div>
           </li>
         ))}

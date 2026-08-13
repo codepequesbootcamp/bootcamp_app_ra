@@ -3,11 +3,30 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main className="page">
-      <h1>bootcamp_app_ra</h1>
-      <p>Gestión de choferes</p>
+      <header className="page-header">
+        <p className="eyebrow">Carabobo · Fleet</p>
+        <h1>bootcamp_app_ra</h1>
+        <p className="lede">Gestión de choferes</p>
+      </header>
       <nav className="links">
-        <Link href="/lista">Ver lista de choferes</Link>
-        <Link href="/nueva">Agregar nuevo chofer</Link>
+        <Link href="/lista" className="card-link">
+          <div>
+            <strong>Lista de choferes</strong>
+            <span>Consulta el personal registrado</span>
+          </div>
+          <span className="arrow" aria-hidden="true">
+            →
+          </span>
+        </Link>
+        <Link href="/nueva" className="card-link">
+          <div>
+            <strong>Nuevo chofer</strong>
+            <span>Registrar un conductor</span>
+          </div>
+          <span className="arrow" aria-hidden="true">
+            →
+          </span>
+        </Link>
       </nav>
     </main>
   );

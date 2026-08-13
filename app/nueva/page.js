@@ -6,8 +6,11 @@ export default function NuevaPage() {
       <p className="back">
         <Link href="/">← Inicio</Link>
       </p>
-      <h1>Nuevo chofer</h1>
-      <p>Completa el formulario para agregar un chofer</p>
+      <header className="page-header">
+        <p className="eyebrow">Registro</p>
+        <h1>Nuevo chofer</h1>
+        <p className="lede">Completa el formulario para agregar un chofer</p>
+      </header>
       <form className="form">
         <label>
           Nombre completo
