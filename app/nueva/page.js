@@ -1,6 +1,35 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 
 export default function NuevaPage() {
+  const [mensaje, setMensaje] = useState("");
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setMensaje("");
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    const res = await fetch("/api/chofer", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        nombre: formData.get("nombre"),
+        apellido: formData.get("apellido"),
+        documento: formData.get("documento"),
+        telefono: formData.get("telefono"),
+      }),
+    });
+
+    if (res.ok) {
+      setMensaje("Guardado");
+      form.reset();
+    }
+  }
+
   return (
     <main className="page">
       <p className="back">
@@ -11,20 +40,35 @@ export default function NuevaPage() {
         <h1>Nuevo chofer</h1>
         <p className="lede">Completa el formulario para agregar un chofer</p>
       </header>
-      <form className="form">
+      {mensaje ? <p className="notice">{mensaje}</p> : null}
+      <form className="form" onSubmit={handleSubmit}>
         <label>
-          Nombre completo
-          <input type="text" name="nombre" placeholder="Ej. Pedro López" />
+          Nombre
+          <input type="text" name="nombre" placeholder="Ej. Pedro" required />
         </label>
         <label>
-          Número de licencia
-          <input type="text" name="licencia" placeholder="Ej. C-50001" />
+          Apellido
+          <input type="text" name="apellido" placeholder="Ej. López" required />
+        </label>
+        <label>
+          Documento de identidad
+          <input
+            type="text"
+            name="documento"
+            placeholder="Ej. V-12345678"
+            required
+          />
         </label>
         <label>
           Teléfono
-          <input type="tel" name="telefono" placeholder="Ej. 0412-1234567" />
+          <input
+            type="tel"
+            name="telefono"
+            placeholder="Ej. 0412-1234567"
+            required
+          />
         </label>
-        <button type="button">Guardar chofer</button>
+        <button type="submit">Guardar chofer</button>
       </form>
     </main>
   );

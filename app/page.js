@@ -4,8 +4,8 @@ export default function Home() {
   return (
     <main className="page">
       <header className="page-header">
-        <p className="eyebrow">Carabobo · Fleet</p>
-        <h1>bootcamp_app_ra</h1>
+        <p className="eyebrow">RAFAEL</p>
+        <h1>CHOFERES</h1>
         <p className="lede">Gestión de choferes</p>
       </header>
       <nav className="links">

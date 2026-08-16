@@ -1,22 +1,13 @@
 import Link from "next/link";
+import { prisma } from "@/lib/prisma";
 
-const choferes = [
-  { id: 1, nombre: "Carlos Mendoza", licencia: "C-10234" },
-  { id: 2, nombre: "María González", licencia: "C-20891" },
-  { id: 3, nombre: "José Ramírez", licencia: "C-31567" },
-  { id: 4, nombre: "Ana Torres", licencia: "C-44902" },
-];
+export const dynamic = "force-dynamic";
 
-function iniciales(nombre) {
-  return nombre
-    .split(" ")
-    .map((parte) => parte[0])
-    .slice(0, 2)
-    .join("")
-    .toUpperCase();
-}
+export default async function ListaPage() {
+  const choferes = await prisma.drivers.findMany({
+    orderBy: { id: "desc" },
+  });
 
-export default function ListaPage() {
   return (
     <main className="page">
       <p className="back">
@@ -27,19 +18,27 @@ export default function ListaPage() {
         <h1>Choferes</h1>
         <p className="lede">Lista de choferes registrados</p>
       </header>
-      <ul className="list">
-        {choferes.map((chofer) => (
-          <li key={chofer.id}>
-            <div className="avatar" aria-hidden="true">
-              {iniciales(chofer.nombre)}
-            </div>
-            <div className="list-body">
-              <strong>{chofer.nombre}</strong>
-              <div className="meta">Licencia: {chofer.licencia}</div>
-            </div>
-          </li>
-        ))}
-      </ul>
+      {choferes.length === 0 ? (
+        <p className="lede">No hay choferes registrados.</p>
+      ) : (
+        <ul className="list">
+          {choferes.map((chofer) => (
+            <li key={chofer.id}>
+              <div className="avatar" aria-hidden="true">
+                {`${chofer.nombre?.[0] || ""}${chofer.apellido?.[0] || ""}`.toUpperCase()}
+              </div>
+              <div className="list-body">
+                <strong>
+                  {chofer.nombre} {chofer.apellido}
+                </strong>
+                <div className="meta">
+                  Doc: {chofer.documento} · Tel: {chofer.telefono}
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
     </main>
   );
 }
