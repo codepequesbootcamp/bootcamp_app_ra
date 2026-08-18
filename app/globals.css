@@ -11,8 +11,26 @@
   --primary-dark: #1d4ed8;
   --primary-soft: #e8f0ff;
   --danger: #dc2626;
+  --input: #f7f9fc;
   --shadow: 0 1px 2px rgba(28, 33, 40, 0.06), 0 16px 40px rgba(37, 99, 235, 0.1);
   --radius: 12px;
+  --mesh: linear-gradient(120deg, #c5d4ea, #e8eef6, #d2dcec, #b9cbe8, #dfe7f3);
+}
+
+html[data-theme="dark"] {
+  --bg: #141618;
+  --bg-accent: #0e1012;
+  --surface: rgba(30, 34, 38, 0.86);
+  --ink: #e8eaed;
+  --muted: #9aa3ad;
+  --border: rgba(255, 255, 255, 0.12);
+  --primary: #3d8bfd;
+  --primary-dark: #7eb6ff;
+  --primary-soft: #1a2740;
+  --danger: #ff5c5c;
+  --input: #16191c;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 12px 28px rgba(0, 0, 0, 0.28);
+  --mesh: linear-gradient(120deg, #1a2230, #141820, #1c2433, #12161c, #1e2838);
 }
 
 @theme inline {
@@ -29,7 +47,7 @@ body {
   color: var(--ink);
   font-family: var(--font-sans), system-ui, sans-serif;
   line-height: 1.55;
-  background: linear-gradient(120deg, #c5d4ea, #e8eef6, #d2dcec, #b9cbe8, #dfe7f3);
+  background: var(--mesh);
   background-size: 320% 320%;
   animation: mesh 18s ease infinite;
 }
@@ -53,6 +71,29 @@ body {
   padding: 2.75rem 1.25rem 3.5rem;
 }
 
+.theme-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 20;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.5rem 0.85rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+  backdrop-filter: blur(16px);
+  box-shadow: var(--shadow);
+}
+
+.theme-toggle:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
 .page-header {
   margin-bottom: 2rem;
 }
@@ -67,7 +108,7 @@ body {
   text-transform: uppercase;
   color: var(--primary-dark);
   background: var(--primary-soft);
-  border: 1px solid #bfd0f5;
+  border: 1px solid var(--border);
   border-radius: 4px;
 }
 
@@ -277,6 +318,18 @@ body {
   border-color: #fdba74;
 }
 
+html[data-theme="dark"] .chip-off {
+  background: #16351f;
+  color: #86efac;
+  border-color: #2f6b45;
+}
+
+html[data-theme="dark"] .chip-on {
+  background: #3a2714;
+  color: #fdba74;
+  border-color: #7c4a1e;
+}
+
 .asignar-btn {
   font: inherit;
   font-size: 0.78rem;
@@ -325,7 +378,7 @@ body {
   padding: 0.75rem 0.9rem;
   border: 1px solid var(--border);
   border-radius: 6px;
-  background: #f7f9fc;
+  background: var(--input);
   color: var(--ink);
   outline: none;
   transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
@@ -337,7 +390,7 @@ body {
 }
 
 .form input:focus {
-  background: #fff;
+  background: var(--surface);
   border-color: var(--primary);
   box-shadow: 0 0 0 3px rgba(61, 139, 253, 0.25);
 }
@@ -366,7 +419,7 @@ body {
   border-radius: 6px;
   background: var(--primary-soft);
   color: var(--primary);
-  border: 1px solid #bfd0f5;
+  border: 1px solid var(--border);
   font-size: 1.1rem;
   font-weight: 800;
   letter-spacing: 0.04em;

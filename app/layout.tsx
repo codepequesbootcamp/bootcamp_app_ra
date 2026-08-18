@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
+import ThemeToggle from "./theme-toggle";
 import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -16,7 +17,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="es" className={`${jakarta.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <ThemeToggle />
+        {children}
+      </body>
     </html>
   );
 }
