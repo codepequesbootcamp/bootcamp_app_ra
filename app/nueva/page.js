@@ -13,7 +13,7 @@ export default function NuevaPage() {
     const form = e.currentTarget;
     const formData = new FormData(form);
 
-    const res = await fetch("/api/chofer", {
+    const res = await fetch("/api/choferes", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

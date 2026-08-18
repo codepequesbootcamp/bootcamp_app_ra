@@ -13,9 +13,10 @@ datasource db {
 }
 
 model Drivers {
-  id        Int    @id @default(autoincrement())
+  id        Int     @id @default(autoincrement())
   nombre    String
   apellido  String
   documento String
   telefono  String
+  viajando  Boolean @default(false)
 }

@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
-import AsignarViaje from "../choferes/asignar-viaje";
+import AsignarViaje from "./asignar-viaje";
 
 export const dynamic = "force-dynamic";
 
-export default async function ListaPage() {
+export default async function ChoferesPage() {
   const choferes = await prisma.drivers.findMany({
     orderBy: { id: "desc" },
   });
