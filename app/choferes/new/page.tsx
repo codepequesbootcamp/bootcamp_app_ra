@@ -33,7 +33,7 @@ export default function NuevoChoferPage() {
   return (
     <main className="page">
       <p className="back">
-        <Link href="/">← Inicio</Link>
+        <Link href="/choferes">← Lista</Link>
       </p>
       <header className="page-header">
         <p className="eyebrow">Registro</p>

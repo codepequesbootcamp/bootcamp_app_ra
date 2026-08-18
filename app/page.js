@@ -9,7 +9,7 @@ export default function Home() {
         <p className="lede">Gestión de choferes</p>
       </header>
       <nav className="links">
-        <Link href="/lista" className="card-link">
+        <Link href="/choferes" className="card-link">
           <div>
             <strong>Lista de choferes</strong>
             <span>Consulta el personal registrado</span>
@@ -18,7 +18,7 @@ export default function Home() {
             →
           </span>
         </Link>
-        <Link href="/nueva" className="card-link">
+        <Link href="/choferes/new" className="card-link">
           <div>
             <strong>Nuevo chofer</strong>
             <span>Registrar un conductor</span>

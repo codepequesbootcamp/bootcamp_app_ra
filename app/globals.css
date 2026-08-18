@@ -1,17 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #f0f4f8;
-  --bg-accent: #e2eaf2;
-  --surface: #ffffff;
-  --ink: #0f172a;
-  --muted: #64748b;
-  --border: #e2e8f0;
-  --primary: #0d9488;
-  --primary-dark: #0f766e;
-  --primary-soft: #ccfbf1;
-  --shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px rgba(15, 23, 42, 0.06);
-  --radius: 14px;
+  --bg: #141618;
+  --bg-accent: #0e1012;
+  --surface: #1e2226;
+  --ink: #e8eaed;
+  --muted: #9aa3ad;
+  --border: #3a4148;
+  --primary: #3d8bfd;
+  --primary-dark: #2563eb;
+  --primary-soft: #1a2740;
+  --danger: #ff5c5c;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 12px 28px rgba(0, 0, 0, 0.28);
+  --radius: 8px;
 }
 
 @theme inline {
@@ -29,8 +30,7 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
   line-height: 1.55;
   background:
-    radial-gradient(ellipse 90% 60% at 10% -10%, #99f6e4 0%, transparent 50%),
-    radial-gradient(ellipse 70% 50% at 100% 0%, #bae6fd 0%, transparent 45%),
+    radial-gradient(ellipse 80% 50% at 0% 0%, rgba(61, 139, 253, 0.1), transparent 50%),
     linear-gradient(180deg, var(--bg) 0%, var(--bg-accent) 100%);
   background-attachment: fixed;
 }
@@ -52,11 +52,12 @@ body {
   padding: 0.3rem 0.7rem;
   font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--primary-dark);
+  color: var(--primary);
   background: var(--primary-soft);
-  border-radius: 999px;
+  border: 1px solid #2c4a7c;
+  border-radius: 4px;
 }
 
 .page h1 {
@@ -82,7 +83,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  color: var(--muted);
+  color: var(--primary);
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 600;
@@ -90,7 +91,8 @@ body {
 }
 
 .back a:hover {
-  color: var(--primary-dark);
+  color: #7eb6ff;
+  text-decoration: underline;
 }
 
 .links {
@@ -116,8 +118,8 @@ body {
 
 .card-link:hover {
   transform: translateY(-2px);
-  border-color: #99f6e4;
-  box-shadow: 0 4px 20px rgba(13, 148, 136, 0.12);
+  border-color: var(--primary);
+  box-shadow: 0 4px 20px rgba(61, 139, 253, 0.2);
 }
 
 .card-link strong {
@@ -141,11 +143,11 @@ body {
   height: 2rem;
   display: grid;
   place-items: center;
-  border-radius: 999px;
-  background: var(--primary-soft);
-  color: var(--primary-dark);
+  border-radius: 4px;
+  background: var(--primary);
+  color: #111;
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .list {
@@ -173,13 +175,14 @@ body {
   flex-shrink: 0;
   width: 2.6rem;
   height: 2.6rem;
-  border-radius: 999px;
+  border-radius: 4px;
   display: grid;
   place-items: center;
   font-size: 0.85rem;
   font-weight: 700;
-  color: var(--primary-dark);
-  background: var(--primary-soft);
+  color: var(--primary);
+  background: #2a2f34;
+  border: 1px solid var(--border);
 }
 
 .list-body strong {
@@ -203,13 +206,30 @@ body {
 
 .edit-link {
   flex-shrink: 0;
-  color: var(--primary-dark);
+  color: var(--primary);
   text-decoration: none;
   font-size: 0.88rem;
   font-weight: 700;
 }
 
 .edit-link:hover {
+  text-decoration: underline;
+  color: #7eb6ff;
+}
+
+.delete-link {
+  flex-shrink: 0;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--danger);
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.delete-link:hover {
   text-decoration: underline;
 }
 
@@ -226,14 +246,16 @@ body {
   font-size: 0.72rem;
   font-weight: 700;
   padding: 0.2rem 0.55rem;
-  border-radius: 999px;
-  background: #f1f5f9;
-  color: #475569;
+  border-radius: 4px;
+  background: #2a2f34;
+  color: var(--muted);
+  border: 1px solid var(--border);
 }
 
 .chip-on {
-  background: #ccfbf1;
-  color: #0f766e;
+  background: var(--primary-soft);
+  color: var(--primary);
+  border-color: #2c4a7c;
 }
 
 .asignar-btn {
@@ -241,15 +263,15 @@ body {
   font-size: 0.78rem;
   font-weight: 700;
   padding: 0.35rem 0.65rem;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: #fff;
-  color: var(--primary-dark);
+  border: none;
+  border-radius: 4px;
+  background: var(--primary);
+  color: #111;
   cursor: pointer;
 }
 
 .asignar-btn:hover {
-  background: var(--primary-soft);
+  background: #7eb6ff;
 }
 
 .asignar-btn:disabled {
@@ -282,22 +304,22 @@ body {
   font-weight: 500;
   padding: 0.75rem 0.9rem;
   border: 1px solid var(--border);
-  border-radius: 10px;
-  background: #f8fafc;
+  border-radius: 6px;
+  background: #16191c;
   color: var(--ink);
   outline: none;
   transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 }
 
 .form input::placeholder {
-  color: #94a3b8;
+  color: #6b737c;
   font-weight: 400;
 }
 
 .form input:focus {
-  background: #fff;
+  background: #1a1d20;
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.18);
+  box-shadow: 0 0 0 3px rgba(61, 139, 253, 0.25);
 }
 
 .form button {
@@ -305,26 +327,26 @@ body {
   font-weight: 700;
   padding: 0.85rem 1.1rem;
   border: none;
-  border-radius: 10px;
+  border-radius: 6px;
   background: var(--primary);
-  color: #fff;
+  color: #111;
   cursor: pointer;
   margin-top: 0.35rem;
   transition: background 0.15s ease, transform 0.15s ease;
 }
 
 .form button:hover {
-  background: var(--primary-dark);
+  background: #7eb6ff;
   transform: translateY(-1px);
 }
 
 .notice {
   margin: 0 0 1rem;
   padding: 0.85rem 1rem;
-  border-radius: 10px;
-  background: #ecfdf5;
-  color: #065f46;
-  border: 1px solid #a7f3d0;
+  border-radius: 6px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  border: 1px solid #2c4a7c;
   font-size: 1.1rem;
   font-weight: 800;
   letter-spacing: 0.04em;

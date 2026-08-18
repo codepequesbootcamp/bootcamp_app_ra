@@ -18,3 +18,11 @@ export async function PUT(request, { params }) {
   });
   return NextResponse.json(chofer);
 }
+
+export async function DELETE(_request, { params }) {
+  const { id } = await params;
+  await prisma.drivers.delete({
+    where: { id: Number(id) },
+  });
+  return NextResponse.json({ ok: true });
+}
