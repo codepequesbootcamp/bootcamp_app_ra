@@ -24,7 +24,7 @@ export default function AsignarViaje({ id, viajando }) {
 
   return (
     <div className="asignar">
-      <span className={estado ? "chip chip-on" : "chip"}>
+      <span className={estado ? "chip chip-on" : "chip chip-off"}>
         {estado ? "Viajando" : "No tiene viaje asignado"}
       </span>
       <button type="button" className="asignar-btn" onClick={toggle} disabled={cargando}>

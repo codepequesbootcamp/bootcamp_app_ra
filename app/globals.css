@@ -265,10 +265,16 @@ body {
   border: 1px solid var(--border);
 }
 
+.chip-off {
+  background: #e8f7ee;
+  color: #157a3a;
+  border-color: #b7e4c7;
+}
+
 .chip-on {
-  background: var(--primary-soft);
-  color: var(--primary);
-  border-color: #bfd0f5;
+  background: #ffedd5;
+  color: #c2410c;
+  border-color: #fdba74;
 }
 
 .asignar-btn {
