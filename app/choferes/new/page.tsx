@@ -5,10 +5,12 @@ import { FormEvent, useState } from "react";
 
 export default function NuevoChoferPage() {
   const [mensaje, setMensaje] = useState("");
+  const [error, setError] = useState("");
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setMensaje("");
+    setError("");
 
     const form = e.currentTarget;
     const formData = new FormData(form);
@@ -27,6 +29,11 @@ export default function NuevoChoferPage() {
     if (res.ok) {
       setMensaje("Guardado");
       form.reset();
+    } else {
+      const data = (await res.json().catch(() => null)) as {
+        error?: string;
+      } | null;
+      setError(data?.error || "No se pudo guardar el chofer.");
     }
   }
 
@@ -41,6 +48,7 @@ export default function NuevoChoferPage() {
         <p className="lede">Completa el formulario para agregar un chofer</p>
       </header>
       {mensaje && <p className="notice">{mensaje}</p>}
+      {error && <p className="notice">{error}</p>}
       <form className="form" onSubmit={handleSubmit}>
         <label>
           Nombre

@@ -16,17 +16,41 @@ type Chofer = {
 export default function ChoferesPage() {
   const [choferes, setChoferes] = useState<Chofer[]>([]);
   const [listo, setListo] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
+    let cancelado = false;
+
     fetch("/api/choferes")
-      .then((res) => res.json())
-      .then((data) => {
-        setChoferes(data);
-        setListo(true);
+      .then((res) => {
+        if (!res.ok) throw new Error("cargar");
+        return res.json();
+      })
+      .then((data: Chofer[]) => {
+        if (!cancelado) {
+          setChoferes(data);
+          setListo(true);
+        }
+      })
+      .catch(() => {
+        if (!cancelado) setError("No se pudieron cargar los choferes.");
       });
+
+    return () => {
+      cancelado = true;
+    };
   }, []);
 
+  function cambiarViajando(id: number, viajando: boolean) {
+    setChoferes((actual) =>
+      actual.map((chofer) =>
+        chofer.id === id ? { ...chofer, viajando } : chofer
+      )
+    );
+  }
+
   async function eliminar(id: number) {
+    if (!window.confirm("¿Eliminar este chofer?")) return;
     const res = await fetch(`/api/choferes/${id}`, { method: "DELETE" });
     if (res.ok) {
       setChoferes((actual) => actual.filter((chofer) => chofer.id !== id));
@@ -46,7 +70,9 @@ export default function ChoferesPage() {
       <p className="back">
         <Link href="/choferes/new">+ Nuevo chofer</Link>
       </p>
-      {!listo ? (
+      {error ? (
+        <p className="notice">{error}</p>
+      ) : !listo ? (
         <p className="lede">Cargando...</p>
       ) : choferes.length === 0 ? (
         <p className="lede">No hay choferes registrados.</p>
@@ -65,7 +91,11 @@ export default function ChoferesPage() {
                   Doc: {chofer.documento} · Tel: {chofer.telefono}
                 </div>
               </div>
-              <AsignarViaje id={chofer.id} viajando={chofer.viajando} />
+              <AsignarViaje
+                id={chofer.id}
+                viajando={chofer.viajando}
+                onChange={(viajando) => cambiarViajando(chofer.id, viajando)}
+              />
               <Link href={`/choferes/${chofer.id}/edit`} className="edit-link">
                 Editar
               </Link>

@@ -1,37 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# bootcamp_app_ra
 
-## Getting Started
+Pequeña aplicación de gestión de choferes construida con Next.js (App Router), React y Prisma ORM sobre SQLite.
 
-First, run the development server:
+## Puesta en marcha
+
+Instala las dependencias y genera el cliente de Prisma (se ejecuta automáticamente con `postinstall`):
+
+```bash
+npm install
+```
+
+Crea la base de datos (`dev.db`) aplicando las migraciones:
+
+```bash
+npm run db:migrate
+```
+
+Arranca el servidor de desarrollo:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `npm run dev`: servidor de desarrollo.
+- `npm run build`: genera el cliente de Prisma (`prebuild`) y compila la app.
+- `npm run start`: sirve la compilación de producción.
+- `npm run lint`: eslint.
+- `npm run db:migrate`: aplica las migraciones `prisma/migrations` a la base.
+- `npx prisma studio`: explora los datos de la base.
 
-## Learn More
+## Estructura
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# bootcamp_app_ra
+- `app/api/*` — Route Handlers (API) que consumen Prisma (`name="drivers"`).
+- `app/choferes/*` — páginas del directorio de choferes.
+- `lib/prisma.ts` — instancia del `PrismaClient` con el adaptador `better-sqlite3`.
+- `prisma/schema.prisma` — esquema de datos.

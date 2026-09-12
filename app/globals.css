@@ -34,7 +34,7 @@ html[data-theme="dark"] {
 }
 
 @theme inline {
-  --font-sans: var(--font-sans);
+  --font-sans: var(--font-jakarta);
 }
 
 * {

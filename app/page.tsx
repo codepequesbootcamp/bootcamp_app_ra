@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "bootcamp_app_ra",
+  description: "Gestión de choferes",
+};
 
 export default function Home() {
   return (

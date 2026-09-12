@@ -16,7 +16,7 @@ model Drivers {
   id        Int     @id @default(autoincrement())
   nombre    String
   apellido  String
-  documento String
+  documento String  @unique
   telefono  String
   viajando  Boolean @default(false)
 }
