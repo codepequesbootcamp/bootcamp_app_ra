@@ -38,7 +38,7 @@ export async function POST(request: Request) {
   } catch (error) {
     if (
       error instanceof Prisma.PrismaClientKnownRequestError &&
-      error.code === "P2002"
+      error.message.includes("UNIQUE constraint failed")
     ) {
       return NextResponse.json(
         { error: "Ya existe un chofer con ese documento" },
