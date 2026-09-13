@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import ThemeToggle from "./theme-toggle";
+import SessionControls from "./session-controls";
 import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -19,6 +20,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="es" className={`${jakarta.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <ThemeToggle />
+        <SessionControls />
         {children}
       </body>
     </html>

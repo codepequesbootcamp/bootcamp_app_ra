@@ -26,6 +26,7 @@ export default function LoginPage() {
     });
 
     if (res.ok) {
+      window.dispatchEvent(new Event("sessionchange"));
       router.push("/choferes");
     } else {
       const data = (await res.json().catch(() => null)) as {
