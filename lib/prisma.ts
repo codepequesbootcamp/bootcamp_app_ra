@@ -1,9 +1,16 @@
-import { PrismaBetterSqlite3 } from "@prisma/adapter-better-sqlite3";
+import { PrismaLibSql } from "@prisma/adapter-libsql";
 import { PrismaClient } from "@/app/generated/prisma/client";
 
-const adapter = new PrismaBetterSqlite3({
-  url: process.env.DATABASE_URL || "file:./dev.db",
-});
+const url = process.env.TURSO_DATABASE_URL;
+const authToken = process.env.TURSO_AUTH_TOKEN;
+
+if (!url || !authToken) {
+  throw new Error(
+    "Faltan las variables TURSO_DATABASE_URL / TURSO_AUTH_TOKEN"
+  );
+}
+
+const adapter = new PrismaLibSql({ url, authToken });
 
 const globalForPrisma = globalThis as unknown as {
   prismaClientV3?: PrismaClient;
