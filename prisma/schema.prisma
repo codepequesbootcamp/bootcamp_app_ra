@@ -20,3 +20,9 @@ model Drivers {
   telefono  String
   viajando  Boolean @default(false)
 }
+
+model User {
+  id       Int    @id @default(autoincrement())
+  email    String @unique
+  password String
+}

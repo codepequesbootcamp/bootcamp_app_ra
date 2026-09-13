@@ -9,6 +9,14 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main className="page">
+      <nav className="auth-nav">
+        <Link href="/login" className="auth-link">
+          Iniciar sesión
+        </Link>
+        <Link href="/register" className="auth-link">
+          Crear cuenta
+        </Link>
+      </nav>
       <header className="page-header">
         <p className="eyebrow">RAFAEL</p>
         <h1>CHOFERES</h1>
