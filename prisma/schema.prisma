@@ -22,7 +22,9 @@ model Drivers {
 }
 
 model User {
-  id       Int    @id @default(autoincrement())
-  email    String @unique
+  id       Int     @id @default(autoincrement())
+  email    String  @unique
   password String
+  role     String  @default("client")
+  enabled  Boolean @default(true)
 }
